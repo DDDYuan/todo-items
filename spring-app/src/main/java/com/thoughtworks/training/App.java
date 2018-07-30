@@ -1,6 +1,5 @@
 package com.thoughtworks.training;
 
-import org.springframework.beans.factory.BeanFactory;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.util.Arrays;
