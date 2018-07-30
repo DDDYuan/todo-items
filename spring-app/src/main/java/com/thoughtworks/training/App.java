@@ -8,17 +8,19 @@ import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) {
-        new App().runWithSpring();
+        new App().run();
     }
 
     public void run() {
-        NumberProcessor numberProcessor = new NumberProcessor(Arrays.asList(new EvenFilter(), new PlusProcessor(2)));
+        NumberProcessor numberProcessor = getNumberProcessorBySpring();
         System.out.println(numberProcessor.process(new Scanner(System.in).nextLine()));
     }
 
-    public void runWithSpring() {
-        BeanFactory factory = new ClassPathXmlApplicationContext("content.xml");
-        NumberProcessor numberProcessor = factory.getBean(NumberProcessor.class);
-        System.out.println(numberProcessor.process(new Scanner(System.in).nextLine()));
+    private NumberProcessor getNumberProcessorManully() {
+        return new NumberProcessor(Arrays.asList(new EvenFilter(), new PlusProcessor(2)));
+    }
+
+    private NumberProcessor getNumberProcessorBySpring() {
+        return new ClassPathXmlApplicationContext("content.xml").getBean(NumberProcessor.class);
     }
 }
